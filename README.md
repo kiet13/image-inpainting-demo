@@ -17,3 +17,8 @@ cd image-inpainting-demo
 ```bash
 pip instal flask
 ```
+- Include images: I use 2 datasets Places2 and Paris StreetView. I can't post the public link to Paris StreetView due to the policy restrictions from Google Street View. Places2 dataset can be found at: http://places2.csail.mit.edu/
+- Run app:
+```bash
+python app.py
+```
