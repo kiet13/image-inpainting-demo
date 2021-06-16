@@ -1,0 +1,4 @@
+# Not pushing images on Explore section
+static/images/places365_8c/**
+static/images/psv/*
+static/images/results/**

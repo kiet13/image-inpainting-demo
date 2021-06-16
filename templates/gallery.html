@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>Image Inpainting Demo</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link rel="icon" href="{{ url_for('static', filename='images/title-icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lightbox.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox-plus-jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
+</head>
+
+<body>
+    
+    <div class="topnav">
+        <div class="container" style="width: 75%">
+            <ul>
+                <li><a id="overview" href="/home">Overview</a></li>
+                <li><a id="demo" href="/demo">Demo</a></li>
+                <li><a id="gallery" class="active" href="/gallery">Explore</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-1">
+        <div class="sidenav">
+            <div id="leftmenu">
+                <ul>
+                    <div class='tut_overview'>
+                        <li><a href="/places365_8c/butte" id="places2">Places2</a></li>
+                    </div>
+                    
+                    <div class="places_categories">
+                        <li><a href="/places365_8c/butte" id="butte">butte</a></li>
+                        <li><a href="/places365_8c/canyon" id="canyon">canyon</a></li>
+                        <li><a href="/places365_8c/field_road" id="field_road">field-road</a></li>
+                        <li><a href="/places365_8c/field-cultivated" id="field-cultivated">field-cultivated</a></li>
+                        <li><a href="/places365_8c/field-wild" id="field-wild">field-wild</a></li>
+                        <li><a href="/places365_8c/synagogue-outdoor" id="synagogue-outdoor">synagogue-outdoor</a></li>
+                        <li><a href="/places365_8c/tundra" id="tundra">tundra</a></li>
+                        <li><a href="/places365_8c/valley" id="valley">valley</a></li>
+                    </div>
+                    <div class="tut_overview">
+                        <li><a href="/psv" id="psv">Paris StreetView</a></li>
+                    </div>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var category = "{{ category }}";
+        var isPlaces = category.startsWith("places365_8c");
+        category = "#" + category.replace("places365_8c/", "");
+        console.log(category);
+        $('a').removeClass();
+        if (isPlaces){
+            $('#places2').addClass('active');
+        }
+        $(category).addClass('active');
+        $('#gallery').addClass('active');
+    </script>
+
+    <div class="gallery">
+        {% for image in images %}
+        <a href="{{ url_for('static', filename='images/results/' + category + '/' + image) }}" data-lightbox="mygallery"><img
+                src="{{ url_for('static', filename='images/' + category + '/' + image) }}"></a>
+        {% endfor %}
+    </div>
+
+    <!-- <script>
+        $('li > a').click(function () {
+            $('a').removeClass();
+            $(this).addClass('active');
+        });
+    </script> -->
+
+
+</body>
+
+</html>
